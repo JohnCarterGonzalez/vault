@@ -22,6 +22,7 @@
   pre-commit.hooks = {
     mdl = {
       enable = true;
+      verbose = true;
       fail_fast = true;
       description = "Markdown Linter";
       entry = "mdl";
