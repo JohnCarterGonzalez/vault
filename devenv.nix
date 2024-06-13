@@ -8,7 +8,7 @@
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.marksman ];
+  packages = with pkgs; [ nodePackages.prettier marksman ];
 
   # https://devenv.sh/scripts/
   scripts.hello.exec = "echo hello from $GREET";
@@ -20,18 +20,22 @@
 
   # https://devenv.sh/pre-commit-hooks/
   pre-commit.hooks = {
-    mdl = {
+    prettier = {
       enable = true;
-      verbose = true;
       fail_fast = true;
-      description = "Markdown Linter";
-      entry = "mdl";
-      files = "\\.md$";
+      description = "Prettier - Code Formatter";
+      entry = "prettier --write";
+      files = "\\.md$"; # Match all .md files
       settings = {
-        configPath = ".mdlrc"; # Path to the mdl configuration file
-        json = true; # Format output as JSON
-        verbose = true; # Increase verbosity
-        warnings = true; # Show Kramdown warnings
+        configPath = ".prettirrc";
+        embedded-language-formatting = "auto";
+        parser = "markdown";
+        print-width = 80;
+        prose-wrap = "always"; # Wrap prose to print width
+        single-quote = false; # Use double quotes
+        trailing-comma = "all"; # Print trailing commas wherever possible
+        tab-width = 2; # Number of spaces per indentation-level
+        use-tabs = false; # Indent with spaces instead of tabs
       };
     };
   };
