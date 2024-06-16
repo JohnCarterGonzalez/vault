@@ -4,13 +4,8 @@
 , inputs
 , ...
 }: {
-  # https://devenv.sh/basics/
-  env.GREET = "devenv";
-
-  # https://devenv.sh/packages/
   packages = with pkgs; [ nodePackages.prettier marksman ];
 
-  # https://devenv.sh/scripts/
   scripts.hello.exec = "echo hello from $GREET";
 
   enterShell = ''
