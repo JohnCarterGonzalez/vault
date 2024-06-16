@@ -75,6 +75,7 @@ public class MailService
 - Driver/Entrypoint of the application
 
 ```php
+<?php
 class EncapsulationMain
 {
     public static function main()
